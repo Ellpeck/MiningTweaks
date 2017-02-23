@@ -1,0 +1,64 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'idea'
+
+version = "1.10.2-r1"
+group = "de.ellpeck.miningtweaks"
+archivesBaseName = "MiningTweaks"
+
+minecraft {
+    version = "1.10.2-12.18.3.2234"
+    runDir = "idea"
+
+    mappings = "snapshot_20161126"
+    makeObfSourceJar = false
+    //useDepAts = true
+
+    replaceIn "MiningTweaks.java"
+    replace "@VERSION@", project.version.toString()
+}
+
+repositories {
+
+}
+
+dependencies {
+
+}
+
+processResources {
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+
+        expand 'version': project.version, 'mcversion': project.minecraft.version
+    }
+
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
+
+jar {
+
+}
+
+task deobfJar(type: Jar) {
+    from sourceSets.main.output
+    from sourceSets.main.java
+    classifier = 'dev'
+}
