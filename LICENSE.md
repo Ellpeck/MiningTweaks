@@ -23,4 +23,4 @@ Everything that is not listed below applies to the above.
 ### NOTES
 * Parts of this license, especially restrictive ones, can be ignored with personal permission. Said permission, however, will only be given to people I know or someone who has a very good reason for needing it.
 
-© 2016 Ellpeck
+© 2017 Ellpeck
