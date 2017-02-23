@@ -1,2 +1,2 @@
-# de.ellpeck.miningtweaks.MiningTweaks
+# MiningTweaks
 A mod that lets you configure the hardness and mining level of existing blocks
