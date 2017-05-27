@@ -14,12 +14,12 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'idea'
 
-version = "1.10.2-r1"
+version = "1.11.2-r2"
 group = "de.ellpeck.miningtweaks"
 archivesBaseName = "MiningTweaks"
 
 minecraft {
-    version = "1.10.2-12.18.3.2234"
+    version = "1.11.2-13.20.0.2309"
     runDir = "idea"
 
     mappings = "snapshot_20161126"
