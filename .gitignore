@@ -1,6 +1,5 @@
 /rebuild.bat
 /doAllTheThings.bat
-/gradlew-*.bat
 /.gradle
 /build
 /out
