@@ -42,7 +42,19 @@ public class MiningTweaks{
     @EventHandler
     public void postInit(FMLPostInitializationEvent event){
 
-        applyHardnessMultiplier();
+        for(Block block : GameData.getBlockRegistry().typeSafeIterable()){
+            try{
+                float oldHardness = block.getBlockHardness(null, null, null);
+
+                if(oldHardness >= 0f){
+                    float newHardness = oldHardness*hardnessMultiplier;
+                    block.setHardness(newHardness);
+                }
+            }
+            catch(Exception e){
+                LOGGER.error("Could not apply hardness multiplier to "+block.getUnlocalizedName()+"!", e);
+            }
+        }
 
         for(String s : hardnessTweaks){
             try{
@@ -99,25 +111,6 @@ public class MiningTweaks{
         public void onConfigurationChangedEvent(OnConfigChangedEvent event){
             if(MOD_ID.equals(event.getModID())){
                 defineConfigs();
-            }
-        }
-    }
-
-    private static void applyHardnessMultiplier() {
-
-        float oldHardness, newHardness;
-
-        for (Block block : GameData.getBlockRegistry().typeSafeIterable()) {
-            try {
-                oldHardness = block.getBlockHardness(null, null, null);
-
-                if (oldHardness >= 0f) {
-                    newHardness = oldHardness * hardnessMultiplier;
-                    block.setHardness(newHardness);
-                }
-            }
-            catch (Exception e) {
-                LOGGER.error("Could not apply hardness multiplier to " + block.getUnlocalizedName() + "!", e);
             }
         }
     }
